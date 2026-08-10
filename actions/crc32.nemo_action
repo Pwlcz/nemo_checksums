@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=CRC-32
+Exec=<checksum_menu@pwlcz/hash_wrapper.sh cksum "CRC-32" %F>
+Selection=notnone
+Extensions=nodirs;
+Dependencies=bash;cksum;
+Terminal=true

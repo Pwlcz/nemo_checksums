@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=BLAKE2
+Exec=<checksum_menu@pwlcz/hash_wrapper.sh b2sum "BLAKE2" %F>
+Selection=notnone
+Extensions=nodirs;
+Dependencies=bash;b2sum;
+Terminal=true

@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=SHA-224
+Exec=<checksum_menu@pwlcz/hash_wrapper.sh sha224sum "SHA-224" %F>
+Selection=notnone
+Extensions=nodirs;
+Dependencies=bash;sha224sum;
+Terminal=true

@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=SHA-512
+Exec=<checksum_menu@pwlcz/hash_wrapper.sh sha512sum "SHA-512" %F>
+Selection=notnone
+Extensions=nodirs;
+Dependencies=bash;sha512sum;
+Terminal=true
