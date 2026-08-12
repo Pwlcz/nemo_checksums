@@ -1,25 +1,46 @@
 #!/bin/bash
-# The first argument is the command (e.g., md5sum), the second is the display label.
+# The first argument is the command (e.g., md5sum), the second is the display label, the rest are files.
+set -euo pipefail
+
 ALGORITHM=$1
 LABEL=$2
-# Shift the first two arguments out so only the selected files remain in $@
 shift 2
-# TODO: change to zenity popup
+TEXT=""
 for f in "$@"; do
-    if [ ! -f "$f" ]; then
-        echo "Skipping directory: $f"
-        echo "--------------------------------------------------------------------------------"
-        continue
-    fi
-    
-    echo -e "\e[1;34mFile:\e[0m $f"
-    
-    # Calculate the hash and grab only the hex string (cut drops the file path)
-    HASH=$($ALGORITHM "$f" | cut -d' ' -f1)
-    
-    echo -e "\e[1;32m$LABEL:\e[0m $HASH"
-    echo "--------------------------------------------------------------------------------"
+  if [[ ! -f "$f" ]]; then
+    TEXT+="<b>File:</b> $(basename "${f}")
+<b>Status:</b> missing file
+\n
+"
+    continue
+  fi
+
+  HASH=$($ALGORITHM "$f" | awk '{print $1}')
+  # shellcheck disable=SC2012
+  FILE_SIZE=$(ls -lh "${f}" | awk '{print $5}')
+  TEXT+="<b>File:</b> $(basename "${f}")
+<b>Size:</b> ${FILE_SIZE}
+<b>${LABEL}:</b> ${HASH}
+\n
+"
 done
 
-echo ""
-read -rp "Press [Enter] to close..."
+if [[ "$#" -eq 1 ]]; then
+  RESPONSE=$(zenity --info \
+                    --title="$LABEL Checksum" \
+                    --icon-name=checkbox-checked-symbolic \
+                    --text="$TEXT" \
+                    --ok-label="Close" \
+                    --extra-button="Copy Hash" || true)
+
+  if [[ "$RESPONSE" == "Copy Hash" ]]; then
+    printf "%s" "$HASH" | xclip -selection clipboard
+  fi
+else
+  # If multiple files were selected, just show the standard dialog
+  zenity --info \
+         --title="$LABEL Checksums" \
+         --icon-name=checkbox-checked-symbolic \
+         --text="$TEXT" \
+         --ok-label="Close"
+fi

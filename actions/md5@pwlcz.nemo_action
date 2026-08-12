@@ -3,5 +3,4 @@ Name=MD5
 Exec=<checksum_menu@pwlcz/hash_wrapper.sh md5sum "MD5" %F>
 Selection=notnone
 Extensions=nodirs;
-Dependencies=bash;md5sum;
-Terminal=true
+Dependencies=bash;md5sum;zenity;xclip;

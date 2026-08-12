@@ -3,5 +3,4 @@ Name=SHA-256
 Exec=<checksum_menu@pwlcz/hash_wrapper.sh sha256sum "SHA-256" %F>
 Selection=notnone
 Extensions=nodirs;
-Dependencies=bash;sha256sum;
-Terminal=true
+Dependencies=bash;sha256sum;zenity;xclip;

@@ -1,0 +1,9 @@
+[Nemo Action]
+Name=Verify from Clipboard
+Comment=Auto-detects hash type from clipboard and verifies the selected file
+Exec=<checksum_menu@pwlcz/verify_clipboard.sh %F>
+Icon-Name=edit-paste-symbolic
+Selection=S
+Extensions=nodirs;
+Dependencies=bash;xclip;zenity;
+Quote=double
