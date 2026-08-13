@@ -5,7 +5,13 @@ set -euo pipefail
 
 FILE="$1"
 
-CLIP_CONTENT=$(xclip -o -selection clipboard 2>/dev/null)
+CLIP_CONTENT=$(xclip -o -selection clipboard 2>/dev/null || true)
+
+if [[ -z "${CLIP_CONTENT:-}" ]]; then
+  zenity --warning --title="No Clipboard Content" \
+         --text="The clipboard is empty or does not contain text."
+  exit 1
+fi
 
 # I like your funny words magic man
 EXPECTED_HASH=$(printf '%s\n' "$CLIP_CONTENT" | \
