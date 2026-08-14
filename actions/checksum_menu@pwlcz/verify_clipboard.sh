@@ -41,6 +41,7 @@ case $LEN in
   96) ALGS=("sha384sum") ; EXPECTED_TYPE="SHA-384" ;;
   128) ALGS=("sha512sum" "b2sum") ; EXPECTED_TYPE="$(gettext "SHA-512 or BLAKE2")" ;;
   *)
+    # If for any reason, clipboard successfully went trough previous condition, it'll be caught here
     TITLE="$(gettext "Unsupported Hash Length")"
     TEXT="$(gettext "The clipboard hash length is not supported.")"
     zenity --error --title="${TITLE}" --text="${TEXT}" --ok-label="${OK_LABEL}"
