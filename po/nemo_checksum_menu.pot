@@ -1,0 +1,119 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-14 01:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: verify_clipboard.sh:13
+msgid "No Clipboard Content"
+msgstr ""
+
+#: verify_clipboard.sh:14
+msgid "The clipboard is empty or does not contain text."
+msgstr ""
+
+#: verify_clipboard.sh:26
+msgid "No Checksum Found"
+msgstr ""
+
+#: verify_clipboard.sh:27
+msgid "Could not find a valid hash string in the clipboard."
+msgstr ""
+
+#: verify_clipboard.sh:41
+msgid "SHA-512 or BLAKE2"
+msgstr ""
+
+#: verify_clipboard.sh:43
+msgid "Unsupported Hash Length"
+msgstr ""
+
+#: verify_clipboard.sh:44
+msgid "The clipboard hash length is not supported."
+msgstr ""
+
+#: verify_clipboard.sh:51
+msgid "Verifying Checksum"
+msgstr ""
+
+# {FILENAME}
+#: verify_clipboard.sh:53
+msgid "Hashing %s..."
+msgstr ""
+
+# {MD5/SHA-1/etc.} 
+#: verify_clipboard.sh:83
+msgid "<b>%s:</b>\\n<i>Failed to read file</i>\\n"
+msgstr ""
+
+# {MD5/SHA-1/etc.}
+# {Checksum}
+#: verify_clipboard.sh:88
+msgid "<b>%s:</b>\\n%s\\n"
+msgstr ""
+
+#: verify_clipboard.sh:102
+msgid "Checksum Match"
+msgstr ""
+
+#: verify_clipboard.sh:104
+msgid ""
+"<span foreground='green' size='x-large'><b>MATCH</b></span>\n"
+"<b>Algorithm:</b> %s\n"
+"<b>File:</b> %s\n"
+"<b>Size:</b> %s\n"
+"<b>Hash:</b> %s"
+msgstr ""
+
+#: verify_clipboard.sh:114
+msgid "Checksum Mismatch"
+msgstr ""
+
+#: verify_clipboard.sh:116
+msgid ""
+"<span foreground='red' size='x-large'><b>MISMATCH</b></span>\n"
+"<b>Expected type:</b> %s\n"
+"<b>File:</b> %s\n"
+"<b>Size:</b> %s\n"
+"<b>Expected (Clipboard):</b> %s\n"
+"<b>Actual Computed:</b> %s"
+msgstr ""
+
+#: hash_wrapper.sh:13
+msgid ""
+"<b>File:</b> %s\n"
+"<b>Status:</b> missing file\\n\\n"
+msgstr ""
+
+#: hash_wrapper.sh:21
+msgid ""
+"<b>File:</b> %s\n"
+"<b>Size:</b> %s\n"
+"<b>%s Checksum:</b> %s\\n\\n"
+msgstr ""
+
+# {MD5/SHA-1/etc.} 
+#: hash_wrapper.sh:29
+msgid "%s Checksum"
+msgstr ""
+
+#: hash_wrapper.sh:30
+msgid "Close"
+msgstr ""
+
+#: hash_wrapper.sh:31
+msgid "Copy Hash"
+msgstr ""

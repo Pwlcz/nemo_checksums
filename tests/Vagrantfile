@@ -1,0 +1,25 @@
+# vm for manual testing
+Vagrant.configure("2") do |config|
+  config.vm.define :mint_test do |mint_test|
+    mint_test.vm.box = "mint-2026.05.31"
+    mint_test.vm.synced_folder "..", "/vagrant", type: "nfs", nfs_udp: false, nfs_version: 4, mount_options: ["tcp", "nolock", "actimeo=2"]
+
+    mint_test.vm.provider :libvirt do |domain, override|
+      domain.memory = 4096
+        domain.cpus = 2
+        domain.nested = true
+      
+        # Enable SPICE graphics and a virtual GPU
+        domain.graphics_type = "spice"
+        domain.video_type = "virtio"
+        domain.video_vram = 256
+      
+        # Enable the SPICE channel for clipboard sharing and dynamic resizing
+        domain.channel type: "spicevmc", target_name: "com.redhat.spice.0", target_type: "virtio"
+    end
+    
+    mint_test.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update && sudo apt-get upgrade -y
+    SHELL
+  end  
+end

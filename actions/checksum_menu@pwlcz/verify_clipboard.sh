@@ -2,27 +2,32 @@
 # Verifies checksum in clipboard with selected file. Automatically detects which algorithm was used.
 # If multiple algorithms, are possible, checks them all.
 set -euo pipefail
+export TEXTDOMAIN="checksum_menu@pwlcz"
+export TEXTDOMAINDIR="${HOME}/.local/share/locale/"
+OK_LABEL="$(gettext "Close")"
 
 FILE="$1"
 
 CLIP_CONTENT=$(xclip -o -selection clipboard 2>/dev/null || true)
 
 if [[ -z "${CLIP_CONTENT:-}" ]]; then
-  zenity --warning --title="No Clipboard Content" \
-         --text="The clipboard is empty or does not contain text."
+  TITLE="$(gettext "No Clipboard Content")"
+  TEXT="$(gettext "The clipboard is empty or does not contain text.")"
+  zenity --warning --title="${TITLE}" --text="${TEXT}" --ok-label="${OK_LABEL}"
   exit 1
 fi
 
 # I like your funny words magic man
-EXPECTED_HASH=$(printf '%s\n' "$CLIP_CONTENT" | \
+EXPECTED_HASH=$(printf '%s\n' "${CLIP_CONTENT}" | \
   grep -oE '\b([a-fA-F0-9]{32}|[a-fA-F0-9]{40}|[a-fA-F0-9]{56}|[a-fA-F0-9]{64}|[a-fA-F0-9]{96}|[a-fA-F0-9]{128})\b' | \
   head -n 1 | \
   tr '[:upper:]' '[:lower:]' || true)
 
 if [[ -z "${EXPECTED_HASH:-}" ]]; then
-  zenity --warning --title="No Checksum Found" \
-         --text="Could not find a valid hash string in the clipboard."
-  exit 1
+  TITLE="$(gettext "No Checksum Found")"
+  TEXT="$(gettext "Could not find a valid hash string in the clipboard.")"
+  zenity --warning --title="${TITLE}" --text="${TEXT}" --ok-label="${OK_LABEL}"
+  exit 1  
 fi
 
 LEN=${#EXPECTED_HASH}
@@ -34,15 +39,19 @@ case $LEN in
   56) ALGS=("sha224sum") ; EXPECTED_TYPE="SHA-224" ;;
   64) ALGS=("sha256sum") ; EXPECTED_TYPE="SHA-256" ;;
   96) ALGS=("sha384sum") ; EXPECTED_TYPE="SHA-384" ;;
-  128) ALGS=("sha512sum" "b2sum") ; EXPECTED_TYPE="SHA-512 or BLAKE2" ;;
+  128) ALGS=("sha512sum" "b2sum") ; EXPECTED_TYPE="$(gettext "SHA-512 or BLAKE2")" ;;
   *)
-    zenity --error --title="Unsupported Hash Length" \
-           --text="The clipboard hash length is not supported."
+    TITLE="$(gettext "Unsupported Hash Length")"
+    TEXT="$(gettext "The clipboard hash length is not supported.")"
+    zenity --error --title="${TITLE}" --text="${TEXT}" --ok-label="${OK_LABEL}"
     exit 1
     ;;
 esac
 
 # Wrap the calculation and the results in a subshell piped to zenity --progress
+TITLE_PROGRESS="$(gettext "Verifying Checksum")"
+# shellcheck disable=SC2059
+TEXT_PROGRESS=$(printf "$(gettext "Hashing %s...")" "${FILE}")
 (
   MATCH_FOUND=false
   ACTUAL_RESULTS=""
@@ -51,12 +60,12 @@ esac
   FILE_SIZE=$(ls -lh "${FILE}" | awk '{print $5}')
 
   for ALG in "${ALGS[@]}"; do
-    if ! command -v "$ALG" >/dev/null 2>&1; then
+    if ! command -v "${ALG}" &>/dev/null; then
       continue
     fi
 
     # Translate the raw command into a clean display name
-    case "$ALG" in
+    case "${ALG}" in
       md5sum)    FORMATTED_ALG="MD5" ;;
       sha1sum)   FORMATTED_ALG="SHA-1" ;;
       sha224sum) FORMATTED_ALG="SHA-224" ;;
@@ -64,22 +73,24 @@ esac
       sha384sum) FORMATTED_ALG="SHA-384" ;;
       sha512sum) FORMATTED_ALG="SHA-512" ;;
       b2sum)     FORMATTED_ALG="BLAKE2" ;;
-      *)         FORMATTED_ALG="$ALG" ;;
+      *)         FORMATTED_ALG="${ALG}" ;;
     esac
 
     # Added || true to prevent pipefail from terminating the script
-    ACTUAL=$("$ALG" "$FILE" 2>/dev/null | awk '{print $1}' || true)
+    HASH=$("${ALG}" "${FILE}" 2>/dev/null | awk '{print $1}' || true)
     
-    if [[ -z "$ACTUAL" ]]; then
-      ACTUAL_RESULTS+="<b>${FORMATTED_ALG}:</b>\n<i>Failed to read file</i>\n"
+    if [[ -z "$HASH" ]]; then
+      # shellcheck disable=SC2059
+      ACTUAL_RESULTS+=$(printf "$(gettext "<b>%s:</b>\n<i>Failed to read file</i>\n")" "${FORMATTED_ALG}")
       continue
     fi
 
-    ACTUAL_RESULTS+="<b>${FORMATTED_ALG}:</b>\n${ACTUAL}\n"
+    # shellcheck disable=SC2059
+    ACTUAL_RESULTS+=$(printf "$(gettext "\n<b>%s:</b>\n%s\n")" "${FORMATTED_ALG}" "${HASH}")
 
-    if [[ "$EXPECTED_HASH" == "$ACTUAL" ]]; then
+    if [[ "${EXPECTED_HASH}" == "${HASH}" ]]; then
       MATCH_FOUND=true
-      MATCHED_ALG="$FORMATTED_ALG"
+      MATCHED_ALG="${FORMATTED_ALG}"
       break
     fi
   done
@@ -89,30 +100,28 @@ esac
   exec >/dev/null
 
   if [[ "$MATCH_FOUND" == true ]]; then
-    zenity --info --title="Checksum Match" \
+    TITLE="$(gettext "Checksum Match")"
+    # shellcheck disable=SC2059
+    TEXT=$(printf "$(gettext "<span foreground='green' size='x-large'><b>MATCH</b></span>
+<b>Algorithm:</b> %s
+<b>File:</b> %s
+<b>Size:</b> %s
+<b>Hash:</b> %s")" \
+"${MATCHED_ALG}" "$(basename "${FILE}")" "${FILE_SIZE}" "${EXPECTED_HASH}")
+    zenity --info --title="${TITLE}" \
            --icon-name=checkbox-checked-symbolic \
-           --text="<span foreground='green' size='x-large'><b>MATCH</b></span>
-
-<b>Algorithm:</b> ${MATCHED_ALG}
-<b>File:</b> $(basename "${FILE}")
-<b>Size:</b> ${FILE_SIZE}
-
-<b>Hash:</b>
-${EXPECTED_HASH}"
+           --text="${TEXT}" --ok-label="${OK_LABEL}"
   else
-    zenity --error --title="Checksum Mismatch" \
-      --text="<span foreground='red' size='x-large'><b>MISMATCH</b></span>
-
-<b>Expected type:</b> ${EXPECTED_TYPE}
-<b>File:</b> $(basename "$FILE")
-<b>Size:</b> ${FILE_SIZE}
-
-<b>Expected (Clipboard):</b>
-$EXPECTED_HASH
-
-<b>Actual Computed:</b>
-$ACTUAL_RESULTS"
+    TITLE="$(gettext "Checksum Mismatch")"
+    # shellcheck disable=SC2059
+    TEXT=$(printf "$(gettext "<span foreground='red' size='x-large'><b>MISMATCH</b></span>
+<b>Expected type:</b> %s
+<b>File:</b> %s
+<b>Size:</b> %s
+<b>Expected (Clipboard):</b> %s
+<b>Actual Computed:</b> %s")" \
+"${EXPECTED_TYPE}" "$(basename "${FILE}")" "${FILE_SIZE}" "${EXPECTED_HASH}" "${ACTUAL_RESULTS}")
+    zenity --error --title="${TITLE}" --text="${TEXT}" --ok-label="${OK_LABEL}"
   fi
-) | zenity --progress --title="Verifying Checksum" \
-           --text="Hashing $(basename "$FILE")..." \
+) | zenity --progress --title="${TITLE_PROGRESS}" --text="${TEXT_PROGRESS}" \
            --pulsate --auto-close --auto-kill

@@ -1,0 +1,166 @@
+# Copyright (C) 2026 Pwlcz
+# This file is distributed under the same license as the nemo_checksums package.
+#
+# SPDX-FileCopyrightText: 2026 Pwlcz <thedamnedmadness@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: nemo_checksums:1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-08-14 01:07+0200\n"
+"PO-Revision-Date: 2026-08-14 01:35+0200\n"
+"Last-Translator: Pwlcz <thedamnedmadness@gmail.com>\n"
+"Language-Team: \n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: verify_clipboard.sh:13
+msgid "No Clipboard Content"
+msgstr "Brak zawartości schowka"
+
+#: verify_clipboard.sh:14
+msgid "The clipboard is empty or does not contain text."
+msgstr "Schowek jest pusty lub nie zawiera tekstu."
+
+#: verify_clipboard.sh:26
+msgid "No Checksum Found"
+msgstr "Nie znaleziono sumy kontrolnej"
+
+#: verify_clipboard.sh:27
+msgid "Could not find a valid hash string in the clipboard."
+msgstr "W schowku nie znaleziono oczekiwanego formatu sumy kontrolnej."
+
+#: verify_clipboard.sh:41
+msgid "SHA-512 or BLAKE2"
+msgstr "SHA-512 lub BLAKE2"
+
+#: verify_clipboard.sh:43
+msgid "Unsupported Hash Length"
+msgstr "Niewspierana długość sumy kontrolnej"
+
+#: verify_clipboard.sh:44
+msgid "The clipboard hash length is not supported."
+msgstr "Niewspierana długość sumy kontrolnej ze schowka."
+
+#: verify_clipboard.sh:51
+msgid "Verifying Checksum"
+msgstr "Weryfikowanie sumy kontrolnej"
+
+#: verify_clipboard.sh:53
+msgid "Hashing %s..."
+msgstr "Obliczanie sumy kontrolnej %s..."
+
+#: verify_clipboard.sh:83
+msgid "<b>%s:</b>\\n<i>Failed to read file</i>\\n"
+msgstr "<b>%s:</b>\\n<i>Nie udało się odczytać pliku</i>\\n"
+
+#: verify_clipboard.sh:88
+msgid "<b>%s:</b>\\n%s\\n"
+msgstr "<b>%s:</b>\\n%s\\n"
+
+#: verify_clipboard.sh:102
+msgid "Checksum Match"
+msgstr "Zgodna suma kontrolna"
+
+#: verify_clipboard.sh:104
+msgid ""
+"<span foreground='green' size='x-large'><b>MATCH</b></span>\n"
+"<b>Algorithm:</b> %s\n"
+"<b>File:</b> %s\n"
+"<b>Size:</b> %s\n"
+"<b>Hash:</b> %s"
+msgstr ""
+"<span foreground='green' size='x-large'><b>Zgodne</b></span>\n"
+"<b>Algorytm:</b> %s\n"
+"<b>Plik:</b> %s\n"
+"<b>Rozmiar:</b> %s\n"
+"<b>Suma kontrolna:</b> %s"
+
+#: verify_clipboard.sh:114
+msgid "Checksum Mismatch"
+msgstr "Niezgodna suma kontrolna"
+
+#: verify_clipboard.sh:116
+msgid ""
+"<span foreground='red' size='x-large'><b>MISMATCH</b></span>\n"
+"<b>Expected type:</b> %s\n"
+"<b>File:</b> %s\n"
+"<b>Size:</b> %s\n"
+"<b>Expected (Clipboard):</b> %s\n"
+"<b>Actual Computed:</b> %s"
+msgstr ""
+"<span foreground='red' size='x-large'><b>Niezgodne</b></span>\n"
+"<b>Oczekiwany typ:</b> %s\n"
+"<b>Plik:</b> %s\n"
+"<b>Rozmiar:</b> %s\n"
+"<b>Oczekiwana wartość:</b> %s\n"
+"<b>Obliczona wartość:</b> %s"
+
+#: hash_wrapper.sh:13
+msgid ""
+"<b>File:</b> %s\n"
+"<b>Status:</b> missing file\\n\\n"
+msgstr ""
+"<b>Plik:</b> %s\n"
+"<b>Status:</b> nie znaleziono pliku\\n\\n"
+
+#: hash_wrapper.sh:21
+msgid ""
+"<b>File:</b> %s\n"
+"<b>Size:</b> %s\n"
+"<b>%s Checksum:</b> %s\\n\\n"
+msgstr ""
+"<b>Plik:</b> %s\n"
+"<b>Rozmiar:</b> %s\n"
+"<b>Suma kontrolna %s:</b> %s\\n\\n"
+
+#: hash_wrapper.sh:29
+msgid "%s Checksum"
+msgstr "Suma kontrolna %s"
+
+#: hash_wrapper.sh:30
+msgid "Close"
+msgstr "Zamknij"
+
+#: hash_wrapper.sh:31
+msgid "Copy Hash"
+msgstr "Kopiuj sumę kontrolną"
+
+#~ msgid "MATCH"
+#~ msgstr "Zgodne"
+
+#~ msgid "Algorithm"
+#~ msgstr "Algorytm"
+
+#~ msgid "File"
+#~ msgstr "Plik"
+
+#~ msgid "Size"
+#~ msgstr "Rozmiar"
+
+#~ msgid "Hash"
+#~ msgstr "Suma kontrolna"
+
+#~ msgid "MISMATCH"
+#~ msgstr "Niezgodne"
+
+#~ msgid "Expected type"
+#~ msgstr "Oczekiwany rodzaj"
+
+#~ msgid "Expected (Clipboard)"
+#~ msgstr "Oczekiwane (ze schowka)"
+
+#~ msgid "Actual Computed"
+#~ msgstr "Obliczone"
+
+#~ msgid "Status"
+#~ msgstr "Status"
+
+#~ msgid "missing file"
+#~ msgstr "brakujący plik"
+
+#~ msgid "Checksums"
+#~ msgstr "Sumy kontrolne"

@@ -122,6 +122,23 @@ add_nemo_submenu() {
   fi
 }
 
+function install_translation() {
+  if ! command -v msgfmt &>/dev/null; then
+    echo_error "Warning: 'msgfmt' (gettext) is not installed. Skipping translations."
+  else
+    for po_file in po/*.po; do
+        lang=$(basename "$po_file" .po)
+        
+        target_dir="$HOME/.local/share/locale/$lang/LC_MESSAGES"
+        mkdir -p "$target_dir"
+        
+        msgfmt "$po_file" -o "$target_dir/checksum_menu@pwlcz.mo"
+        
+        echo "Installed translation for: $lang"
+    done
+  fi
+}
+
 function main() {
   cd "$(dirname "$0")"
 
@@ -139,6 +156,9 @@ function main() {
 
   echo_step "Copy checksum_menu@pwlcz dir and .nemo_action files to ~/.local/share/nemo/actions/"
   copy_actions
+
+  echo_step "Installing translations..."
+  install_translation
 
   echo_step "Create submenu \"checksum\" in context menu"
   if [[ -f "${HOME}/.config/nemo/actions-tree.json" ]]; then
