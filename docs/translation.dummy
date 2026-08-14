@@ -1,0 +1,5 @@
+#!/bin/bash
+# This file is never executed.
+# It only exists so xgettext can find the metadata.json strings, because I don't want to make a script for that.
+gettext "Checksum Menu"
+gettext "Calculate and verify file checksums directly from the right-click menu."

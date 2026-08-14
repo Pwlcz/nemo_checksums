@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nemo_checksums:1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-14 01:07+0200\n"
-"PO-Revision-Date: 2026-08-14 01:35+0200\n"
+"POT-Creation-Date: 2026-08-14 23:31+0200\n"
+"PO-Revision-Date: 2026-08-14 23:36+0200\n"
 "Last-Translator: Pwlcz <thedamnedmadness@gmail.com>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -17,55 +17,85 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: verify_clipboard.sh:13
+#: hash_wrapper.sh:13
+msgid ""
+"<b>File:</b> %s\n"
+"<b>Status:</b> missing file\\n\\n"
+msgstr ""
+"<b>Plik:</b> %s\n"
+"<b>Status:</b> nie znaleziono pliku\\n\\n"
+
+#: hash_wrapper.sh:22
+msgid ""
+"<b>File:</b> %s\n"
+"<b>Size:</b> %s\n"
+"<b>%s Checksum:</b> %s\\n\\n"
+msgstr ""
+"<b>Plik:</b> %s\n"
+"<b>Rozmiar:</b> %s\n"
+"<b>Suma kontrolna %s:</b> %s\\n\\n"
+
+#: hash_wrapper.sh:30
+msgid "%s Checksum"
+msgstr "Suma kontrolna %s"
+
+#: hash_wrapper.sh:31 verify_clipboard.sh:7
+msgid "Close"
+msgstr "Zamknij"
+
+#: hash_wrapper.sh:32
+msgid "Copy Hash"
+msgstr "Kopiuj sumę kontrolną"
+
+#: verify_clipboard.sh:14
 msgid "No Clipboard Content"
 msgstr "Brak zawartości schowka"
 
-#: verify_clipboard.sh:14
+#: verify_clipboard.sh:15
 msgid "The clipboard is empty or does not contain text."
 msgstr "Schowek jest pusty lub nie zawiera tekstu."
 
-#: verify_clipboard.sh:26
+#: verify_clipboard.sh:27
 msgid "No Checksum Found"
 msgstr "Nie znaleziono sumy kontrolnej"
 
-#: verify_clipboard.sh:27
+#: verify_clipboard.sh:28
 msgid "Could not find a valid hash string in the clipboard."
 msgstr "W schowku nie znaleziono oczekiwanego formatu sumy kontrolnej."
 
-#: verify_clipboard.sh:41
+#: verify_clipboard.sh:42
 msgid "SHA-512 or BLAKE2"
 msgstr "SHA-512 lub BLAKE2"
 
-#: verify_clipboard.sh:43
+#: verify_clipboard.sh:45
 msgid "Unsupported Hash Length"
 msgstr "Niewspierana długość sumy kontrolnej"
 
-#: verify_clipboard.sh:44
+#: verify_clipboard.sh:46
 msgid "The clipboard hash length is not supported."
 msgstr "Niewspierana długość sumy kontrolnej ze schowka."
 
-#: verify_clipboard.sh:51
+#: verify_clipboard.sh:53
 msgid "Verifying Checksum"
 msgstr "Weryfikowanie sumy kontrolnej"
 
-#: verify_clipboard.sh:53
+#: verify_clipboard.sh:55
 msgid "Hashing %s..."
 msgstr "Obliczanie sumy kontrolnej %s..."
 
-#: verify_clipboard.sh:83
+#: verify_clipboard.sh:85
 msgid "<b>%s:</b>\\n<i>Failed to read file</i>\\n"
 msgstr "<b>%s:</b>\\n<i>Nie udało się odczytać pliku</i>\\n"
 
-#: verify_clipboard.sh:88
-msgid "<b>%s:</b>\\n%s\\n"
-msgstr "<b>%s:</b>\\n%s\\n"
+#: verify_clipboard.sh:90
+msgid "\\n<b>%s:</b>\\n%s\\n"
+msgstr "\\n<b>%s:</b>\\n%s\\n"
 
-#: verify_clipboard.sh:102
+#: verify_clipboard.sh:104
 msgid "Checksum Match"
 msgstr "Zgodna suma kontrolna"
 
-#: verify_clipboard.sh:104
+#: verify_clipboard.sh:106
 msgid ""
 "<span foreground='green' size='x-large'><b>MATCH</b></span>\n"
 "<b>Algorithm:</b> %s\n"
@@ -79,11 +109,11 @@ msgstr ""
 "<b>Rozmiar:</b> %s\n"
 "<b>Suma kontrolna:</b> %s"
 
-#: verify_clipboard.sh:114
+#: verify_clipboard.sh:116
 msgid "Checksum Mismatch"
 msgstr "Niezgodna suma kontrolna"
 
-#: verify_clipboard.sh:116
+#: verify_clipboard.sh:118
 msgid ""
 "<span foreground='red' size='x-large'><b>MISMATCH</b></span>\n"
 "<b>Expected type:</b> %s\n"
@@ -99,35 +129,14 @@ msgstr ""
 "<b>Oczekiwana wartość:</b> %s\n"
 "<b>Obliczona wartość:</b> %s"
 
-#: hash_wrapper.sh:13
-msgid ""
-"<b>File:</b> %s\n"
-"<b>Status:</b> missing file\\n\\n"
+#: ../../docs/translation.dummy:4
+msgid "Checksum Menu"
+msgstr "Checksum Menu"
+
+#: ../../docs/translation.dummy:5
+msgid "Calculate and verify file checksums directly from the right-click menu."
 msgstr ""
-"<b>Plik:</b> %s\n"
-"<b>Status:</b> nie znaleziono pliku\\n\\n"
-
-#: hash_wrapper.sh:21
-msgid ""
-"<b>File:</b> %s\n"
-"<b>Size:</b> %s\n"
-"<b>%s Checksum:</b> %s\\n\\n"
-msgstr ""
-"<b>Plik:</b> %s\n"
-"<b>Rozmiar:</b> %s\n"
-"<b>Suma kontrolna %s:</b> %s\\n\\n"
-
-#: hash_wrapper.sh:29
-msgid "%s Checksum"
-msgstr "Suma kontrolna %s"
-
-#: hash_wrapper.sh:30
-msgid "Close"
-msgstr "Zamknij"
-
-#: hash_wrapper.sh:31
-msgid "Copy Hash"
-msgstr "Kopiuj sumę kontrolną"
+"Oblicz i zweryfikuj sumy kontrolne plików bezpośrednio z menu kontekstowego."
 
 #~ msgid "MATCH"
 #~ msgstr "Zgodne"

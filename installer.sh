@@ -126,7 +126,7 @@ function install_translation() {
   if ! command -v msgfmt &>/dev/null; then
     echo_error "Warning: 'msgfmt' (gettext) is not installed. Skipping translations."
   else
-    for po_file in po/*.po; do
+    for po_file in actions/checksum_menu@pwlcz/po/*.po; do
         lang=$(basename "$po_file" .po)
         
         target_dir="$HOME/.local/share/locale/$lang/LC_MESSAGES"

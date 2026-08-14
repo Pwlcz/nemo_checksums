@@ -1,0 +1,8 @@
+{
+    "uuid": "checksum_menu@pwlcz",
+    "name": "Checksum Menu",
+    "description": "Calculate and verify file checksums directly from the right-click menu.",
+    "author": "Pwlcz",
+    "icon": "checkbox-checked-symbolic",
+    "version": "0.1.0"
+}
